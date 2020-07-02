@@ -24,7 +24,6 @@ class UsersTableSeeder extends Seeder
                 'avatar'=>$fake->imageUrl($width = 200, $height = 200),
                 'province'=>$fake->city,
                 'district'=>$fake->address,
-                'is_role'=>$fake->numerify,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
                 

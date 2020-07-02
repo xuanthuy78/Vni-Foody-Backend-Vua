@@ -23,7 +23,6 @@ class ProductsTableSeeder extends Seeder
               'description'=>$fake->sentence,
               'detail'=>$fake->sentence,
               'image'=>$fake->imageUrl($width = 200, $height = 200),
-              'top_hot'=>$fake->numerify,
               'categories_id'=>$fake->numerify,
               'partner_id'=>$fake->numerify,
               'comment_id'=>$fake->numerify,
