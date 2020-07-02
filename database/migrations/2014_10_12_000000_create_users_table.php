@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('province');
             $table->string('district');
-            $table->integer('is_role');
+            $table->integer('is_role')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
