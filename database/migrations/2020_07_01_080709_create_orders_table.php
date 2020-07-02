@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('stauts');
+            $table->string('status');
             $table->string('delivery_address');
             $table->float('total_price');
             $table->string('note');
