@@ -21,8 +21,8 @@ class CreateProductsTable extends Migration
             $table->integer('quanlity');
             $table->string('description');
             $table->string('detail');
-            $table->string('product_image');
-            $table->datetime('top_hot');
+            $table->string('image');
+            $table->integer('top_hot')->default(1);
             $table->integer('categories_id')->unsigned()->index();
             $table->integer('partner_id')->unsigned()->index();
             $table->integer('comment_id')->unsigned()->index();
