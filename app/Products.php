@@ -8,7 +8,7 @@ use DB;
 class Products extends Model
 {
     protected $fillable = [
-        'id', 'name','code','price','quanlity','description','detail','image','top_hot','categories_id','partner_id','comment_id'
+     'name','code','price','quanlity','description','detail','image','top_hot','categories_id','partner_id','comment_id'
     ];
     public function categories() {
         return $this->belongsTo('App\Categories','categories_id','id');

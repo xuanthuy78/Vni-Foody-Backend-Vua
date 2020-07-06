@@ -40,9 +40,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show(Products $id)
     {
-        return $products;
+        return $id;
     }
 
     /**
@@ -52,9 +52,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $product)
+    public function update(Request $request, Products $id)
     {
-        $product->update($request->all());
+        $id->update($request->all());
     }
 
     /**
@@ -63,8 +63,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $product)
+    public function destroy(Products $id)
     {
-        // $product->delete();
+       
+        $id->delete();
+        
+       
+    }
+    public function search (Request $request)
+    {
+
     }
 }

@@ -21,5 +21,8 @@ Route::get('products', 'Api\ProductController@index');
 Route::post('products', 'Api\ProductController@store');
 Route::get('products/{id}', 'Api\ProductController@show');
 Route::put('products/{id}', 'Api\ProductController@update');
+Route::delete('products/{id}', 'Api\ProductController@destroy');
+// Route::get('image', 'Api\UploadController@index');
+// Route::post('image', 'Api\UploadController@store');
 
-// Route::delete('products/{id}', 'Api\ProductController@destroy');
+
