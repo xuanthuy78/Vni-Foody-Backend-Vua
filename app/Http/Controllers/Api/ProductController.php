@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use\App\Products;
 use\App\Comments;
 use\App\Categories;
@@ -67,11 +68,34 @@ class ProductController extends Controller
     {
        
         $id->delete();
+        // if ( $id) {
+        //     Session::flash('success', 'Xóa thành công!');
+        // }else {                        
+        //     Session::flash('error', 'Xóa thất bại!');
+        // }
+        
         
        
     }
-    public function search (Request $request)
-    {
+    public function searchByName(Request $request, $name) {
+        // // $date=$request->get();
+        // dd($name);
+        $product = Products::where('name', 'like', '%' .$name .'%')->get();
 
+        return response()->json($product); 
+    }
+    public function searchByCategory(Request $request, $name) {
+        // // $date=$request->get();
+        // dd($name);
+        $product = Categories::where('name', 'like', '%' .$name .'%')->get();
+
+        return response()->json($product); 
+    }
+    public function searchByPartner(Request $request, $name) {
+        // // $date=$request->get();
+        // dd($name);
+        $product = Partners::where('name', 'like', '%' .$name .'%')->get();
+
+        return response()->json($product); 
     }
 }
