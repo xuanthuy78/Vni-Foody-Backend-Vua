@@ -56,6 +56,8 @@ class ProductController extends Controller
     public function update(Request $request, Products $id)
     {
         $id->update($request->all());
+        
+        
     }
 
     /**
@@ -87,7 +89,9 @@ class ProductController extends Controller
     public function searchByCategory(Request $request, $name) {
         // // $date=$request->get();
         // dd($name);
-        $product = Categories::where('name', 'like', '%' .$name .'%')->get();
+        $product =  Products::where('name', 'like', '%' .$name .'%')
+        
+        ->get();
 
         return response()->json($product); 
     }
