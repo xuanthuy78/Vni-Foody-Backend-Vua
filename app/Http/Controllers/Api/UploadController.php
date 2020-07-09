@@ -14,7 +14,7 @@ class UploadController extends Controller
      */
     public function index()
     {
-        return response ()->download(public_path('image/3.jpg'), 'image');
+        return response ()->download(public_path('image/3.jpg'));
         // $path = public_path().'images';
         // return Response::download($path);       
     }

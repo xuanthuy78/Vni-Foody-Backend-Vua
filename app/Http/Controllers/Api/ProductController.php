@@ -55,9 +55,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Products $id)
     {
-        $id->update($request->all());
-        
-        
+       if( $id->update($request->all())){
+        return response()->json(["message" => "Product update Succesfully"]);
+       }
+       else
+       {
+             return response()->json(["message" => "Product update fail."]);
+       }
+
     }
 
     /**
@@ -68,8 +73,13 @@ class ProductController extends Controller
      */
     public function destroy(Products $id)
     {
-       
-        $id->delete();
+       if(  $id->delete()){
+        return response()->json(["message" => "Product delete Succesfully"]);
+       }else
+       {
+        return response()->json(["message" => "Product delete fail."]);  
+       }
+     
         // if ( $id) {
         //     Session::flash('success', 'Xóa thành công!');
         // }else {                        
@@ -86,11 +96,11 @@ class ProductController extends Controller
 
         return response()->json($product); 
     }
-    public function searchByCategory(Request $request, $name) {
+    public function searchByCategory(Request $request, $categories_id) {
         // // $date=$request->get();
         // dd($name);
-        $product =  Products::where('name', 'like', '%' .$name .'%')
-        
+        $product = Products::where('categories_id', 'like', '%' .$categories_id .'%')
+        // ->join = Categories:: where('')
         ->get();
 
         return response()->json($product); 
