@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route:: get('new_categories','Api\New_categoriesController@index');
+Route:: post('new_categories','Api\New_categoriesController@store');
+Route:: get('new_categories/{id}','Api\New_categoriesController@show');
+Route:: put('new_categories/{id}','Api\New_categoriesController@update');
+Route:: delete('new_categories/{id}','Api\New_categoriesController@destroy');
