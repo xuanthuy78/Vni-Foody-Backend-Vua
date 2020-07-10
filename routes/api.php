@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('partner','Api\PartnerController@index');
+Route::post ('partner','Api\PartnerController@store');
+Route::get('partner/{id}','Api\PartnerController@show');
+Route::put ('partner/{id}','Api\PartnerController@update');
+Route::delete ('partner/{id}','Api\PartnerController@destroy');
+
