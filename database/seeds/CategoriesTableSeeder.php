@@ -11,7 +11,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(){
     $fake  = Faker\Factory::create();
-    $limit = 30;
+    $limit = 10;
   
     for ($i = 0; $i < $limit; $i++){
         DB::table('categories')->insert([
