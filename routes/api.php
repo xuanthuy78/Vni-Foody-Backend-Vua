@@ -21,4 +21,7 @@ Route::get('user/{id}','Api\UsersController@show');
 Route::put('user/{id}','Api\UsersController@update');
 Route::post('login', 'Api\UsersController@login');
 Route::post('register', 'Api\UsersController@register');
+Route::get('logout', 'Api\UsersController@logout')->middleware('auth:api');
+Route ::put('changepassword/{id}','Api\UsersController@changepassword');
+
 
