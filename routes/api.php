@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get ('comment','api\CommentsController@index');
+Route::post ('comment','api\CommentsController@store');
+Route::get ('comment/{id}','api\CommentsController@show');
+Route::put('comment/{id}','api\CommentsController@update');
+Route::delete ('comment/{id}','api\CommentsController@destroy');
+
+

@@ -19,11 +19,9 @@ class User extends Authenticatable
         'name', 'email', 'password','phone','address','avatar','province','district','is_role'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    public function comments(){
+       return $this->hasMany('App\Comments');
+    }
     protected $hidden = [
         'password', 'remember_token',
     ];

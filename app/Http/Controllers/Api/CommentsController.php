@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use\App\Products;
+use\App\Comments;
+use\App\User;
+
+
+class CommentsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return Comments::all();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        return Comments::create($request->all());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Comments $id)
+    {
+        return $id;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Comments $id)
+    {
+        if( $id->update($request->all())){
+            return response()->json(["message" => "Comments update Succesfully"]);
+           }
+           else
+           {
+                 return response()->json(["message" => "Comments update fail."]);
+           }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Comments $id)
+    {
+        if(  $id->delete()){
+            return response()->json(["message" => "Comments delete Succesfully"]);
+           }else
+           {
+            return response()->json(["message" => "Comments delete fail."]);  
+           }
+    }
+}
