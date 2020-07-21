@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('order','api\OrdersController@index');
+Route::post('order','api\OrdersController@store');
+Route::get('order/{id}','api\OrdersController@show');
+Route::put('order/{id}','api\OrdersController@update');
+Route::delete('order/{id}','api\OrdersController@destroy');
