@@ -27,10 +27,6 @@ class UploadController extends Controller
      */
     public function save(Request $request)
     {
-        // $fileName='image.jpg';
-        // $path=$request->file('image')->move(public_path("/"), $fileName);
-        // $imageURL=url('/',$fileName);
-        // return response()->json(['url'=>$imageURL],200);
         if ($request->hasFile('image'))
         {
               $file      = $request->file('image');

@@ -9,6 +9,9 @@ use\App\Products;
 use\App\Comments;
 use\App\Categories;
 use\App\Partners;
+use Spatie\Searchable\Search;
+use Spatie\Searchable\ModelSearchAspect;
+
 
 
 class ProductController extends Controller
@@ -32,6 +35,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $file      = $request->file('image');
+        $filename  = $file->getClientOriginalName();
+      //   $extension = $file->getClientOriginalExtension();
+        $picture   = date('His').'-'.$filename;
+        $file->move(public_path('image'), $picture);
         return Products::create($request->all());
     }
 
@@ -93,17 +101,24 @@ class ProductController extends Controller
         // // $date=$request->get();
         // dd($name);
         $product = Products::where('name', 'like', '%' .$name .'%')->get();
+        $category = $request->get('categories_id');
+        
 
-        return response()->json($product); 
+        return response()->json($product,$category); 
     }
     public function searchByCategory(Request $request, $categories_id) {
-        // // $date=$request->get();
-        // dd($name);
+        // // // $date=$request->get();
+        // // dd($name);
         $product = Products::where('categories_id', 'like', '%' .$categories_id .'%')
         // ->join = Categories:: where('')
         ->get();
 
         return response()->json($product); 
+        // $product = Products::find(1);
+
+// foreach ($product->categories_id as $Categories) {
+//     //
+// }
     }
     public function searchByPartner(Request $request, $name) {
         // // $date=$request->get();
