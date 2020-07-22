@@ -12,17 +12,18 @@ class Categories extends Model implements Searchable
     protected $fillable = [
         'id', 'name', 'parent_id'
     ];
+ 
     public function products(){
         return $this->hasMany('App\Products ');
     }
     public function getSearchResult(): SearchResult
     {
-        // $url = route('categories.show', $this->id);
+        // $url = route(' $this->id);
 
         return new SearchResult(
             $this,
-            $this->name,
-            $this->id
+            $this->name
+            // $url
         );
     }
     

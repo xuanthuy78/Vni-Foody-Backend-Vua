@@ -101,10 +101,8 @@ class ProductController extends Controller
         // // $date=$request->get();
         // dd($name);
         $product = Products::where('name', 'like', '%' .$name .'%')->get();
-        $category = $request->get('categories_id');
-        
-
-        return response()->json($product,$category); 
+        return response()->json($product); 
+  
     }
     public function searchByCategory(Request $request, $categories_id) {
         // // // $date=$request->get();
