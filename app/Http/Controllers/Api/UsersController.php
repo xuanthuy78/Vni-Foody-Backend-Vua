@@ -22,7 +22,7 @@ class UsersController extends Controller
     public function register(Request $request)
     {
      
-        $validator = Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), [
     'name' => 'required',
     'email' => 'required|email',
     'password' => 'required',
@@ -37,6 +37,7 @@ class UsersController extends Controller
     $success['token'] =  $user->createToken('MyApp')->accessToken;
     $success['name'] =  $user->name;
     return response()->json(['success'=>$success]);
+
     }
     public function login(){ 
        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
@@ -55,6 +56,11 @@ class UsersController extends Controller
             'message' => 'Successfully logged out'
         ]);
     }
+    public function index()
+    {
+        
+        return User::all();
+    }
     public function show(User $id)
     {
         return $id;
@@ -67,7 +73,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $id)
+    public function update(Request $request, User $id)
     {
         if( $id->update($request->all())){
             return response()->json(["message" => "User  update Succesfully"]);
@@ -80,49 +86,46 @@ class UsersController extends Controller
     
 
     public function changePassword(Request $request, User $id){
-    //     try {
-    //         $valid = validator($request->only('old_password', 'new_password', 'confirm_password'), [
-    //             'old_password' => 'required',
-    //             'new_password' => 'required|different:old_password',
-    //             'confirm_password' => 'required_with:new_password|same:new_password|',
-    //                 ], [
-    //             'confirm_password.required_with' => 'Confirm password is required.'
-    //         ]);
+        try {
+            $valid = validator($request->only('old_password', 'new_password', 'confirm_password'), [
+                'old_password' => 'required',
+                'new_password' => 'required|different:old_password',
+                'confirm_password' => 'required_with:new_password|same:new_password|',
+                    ], [
+                'confirm_password.required_with' => 'Confirm password is required.'
+            ]);
     
-    //         if ($valid->fails()) {
-    //             return response()->json([
-    //                         'errors' => $valid->errors(),
-    //                         'message' => 'Faild to update password.',
-    //                         'status' => false
-    //                             ], 200);
-    //         }
-    // //            Hash::check("param1", "param2")
-    // //            param1 - user password that has been entered on the form
-    // //            param2 - old password hash stored in database
-    //         if (Hash::check($request->get('old_password'), Auth::user()->password)) {
-    //             $user = User::find(Auth::user()->id);
-    //             $user->password = (new BcryptHasher)->make($request->get('new_password'));
-    //             if ($user->save()) {
-    //                 return response()->json([
-    //                             'data' => [],
-    //                             'message' => 'Your password has been updated',
-    //                             'status' => true
-    //                                 ], 200);
-    //             }
-    //         } else {
-    //             return response()->json([
-    //                         'errors' => [],
-    //                         'message' => 'Wrong password entered.',
-    //                         'status' => false
-    //                             ], 200);
-    //         }
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //                     'errors' => $e->getMessage(),
-    //                     'message' => 'Please try again',
-    //                     'status' => false
-    //                         ], 200);
-    //     }
+            if ($valid->fails()) {
+                return response()->json([
+                            'errors' => $valid->errors(),
+                            'message' => 'Faild to update password.',
+                            'status' => false
+                                ], 200);
+            }
+            if (Hash::check($request->get('old_password'), Auth::users ()->password)) {
+                $user = User::find(Auth::users()->id);
+                $user->password = (new BcryptHasher)->make($request->get('new_password'));
+                if ($user->save()) {
+                    return response()->json([
+                                'data' => [],
+                                'message' => 'Your password has been updated',
+                                'status' => true
+                                    ], 200);
+                }
+            } else {
+                return response()->json([
+                            'errors' => [],
+                            'message' => 'Wrong password entered.',
+                            'status' => false
+                                ], 200);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                        'errors' => $e->getMessage(),
+                        'message' => 'Please try again',
+                        'status' => false
+                            ], 200);
+        }
     }
 
     
